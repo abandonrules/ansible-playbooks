@@ -1,5 +1,5 @@
 ---
-- hosts: '{{inventory}}'
+- hosts: "{{inventory}}"
   become: yes
   roles:
   - atom
