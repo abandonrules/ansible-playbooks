@@ -27,7 +27,7 @@
 - name: Copy default index, error_pages & ssl certificates
   copy: src={{item.src}} dest={{item.dest}}
   with_items:
-    - { src: '{{default_index}}', dest: '{{nginx_doc_root}}' }
+    #- { src: '{{default_index}}', dest: '{{nginx_doc_root}}' }
     - { src: '{{error_page_404}}', dest: '{{nginx_error_pages_dir}}' }
     - { src: '{{error_page_50x}}', dest: '{{nginx_error_pages_dir}}' }
     - { src: '{{error_page_403}}', dest: '{{nginx_error_pages_dir}}' }
