@@ -1,0 +1,57 @@
+---
+## This playbook installs and configures AD authentication....W.I.P
+
+- name: Install and configure AD authentication
+  become: yes
+  become_method: sudo
+  vars_prompt:
+    - name: "bind_password"
+      prompt: "Password for domain\\awxuser"
+      private: yes
+
+  tasks:
+    - name: Install ad_auth required tools
+      apt:
+        name: sssd sssd-tools realmd krb5-user samba-common packagekit adcli
+        state: present
+
+    - name: Add rdns = false
+      lineinfile:
+        dest: /etc/krb5.conf
+        line: 'rdns = false'
+        insertafter: '^default_realm = IN.CHISEL.AI$'
+
+    - name: Join system to AD and put the computer object in the Linux OU
+      expect:
+        command: /bin/bash -c "/usr/sbin/realm join --user=awxuser@in.chisel.ai
+        responses:
+          Password for *: "{{ bind_password }}"
+
+    - name: Add default_domain_suffix to sssd.conf
+      lineinfile:
+        dest: /etc/sssd/sssd.conf
+        line: 'default_domain_suffix = in.chisel.ai'
+        insertafter: '^\[sssd\]'
+
+  #- name: Restrict access based on specific ad group
+  #    command: /bin/bash -c "/usr/sbin/realm permit -g g_Server.{{ item }}-logon@domain.com"
+  #    when: realmd_bound|failed
+
+    - name: Add ad group to sudoers
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'Linux\ Users@in.chisel.ai        ALL=(ALL)       ALL'
+        insertafter: '^%wheel'
+      when: realmd_bound|failed
+
+    - name: Create Home Directries for users by modifying common-session
+      lineinfile:
+        dest: /etc/pam.d/common-session
+        line: 'session required pam_mkhomedir.so skel=/etc/skel/ umask=0022'
+        insertbefore: '^# end of pam-auth-update config$'
+
+  handlers:
+    - name: restart sssd
+      service:
+        name: sssd
+        state: restarted
