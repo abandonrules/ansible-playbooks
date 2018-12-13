@@ -1,13 +1,12 @@
 ---
-## This playbook installs and configures AD authentication
+## This playbook installs and configures AD authentication....WIP
 
 - name: Install and configure AD authentication
-  hosts: centos  
   become: yes
   become_method: sudo
   vars_prompt:
     - name: "bind_password"
-      prompt: "Password for safdal\\administrator"
+      prompt: "Password for domain\\awxuser"
       private: yes
 
   tasks:
@@ -28,7 +27,7 @@
 
     - name: Join system to AD and put the computer object in the Linux OU
       expect:
-        command: /bin/bash -c "/usr/sbin/realm join --user=ADMINISTRATOR@safdal.se --computer-ou=OU=Linux,OU=Servers,OU=Safdal,DC=safdal,DC=se safdal.se"
+        command: /bin/bash -c "/usr/sbin/realm join --user=awxuser@domain 
         responses:
           Password for *: "{{ bind_password }}"
       when: realmd_bound|failed
@@ -36,21 +35,21 @@
     - name: Add default_domain_suffix to sssd.conf
       lineinfile: 
         dest: /etc/sssd/sssd.conf
-        line: 'default_domain_suffix = safdal.se'
+        line: 'default_domain_suffix = domain.com'
         insertafter: '^\[sssd\]'
       notify:
         - restart sssd
       when: realmd_bound|failed
 
     - name: Restrict access based on specific ad group
-      command: /bin/bash -c "/usr/sbin/realm permit -g g_Server.{{ item }}-logon@safdal.se"
+      command: /bin/bash -c "/usr/sbin/realm permit -g g_Server.{{ item }}-logon@domain.com"
       with_items: "{{ inventory_hostname_short }}"
       when: realmd_bound|failed
 
     - name: Add ad group to sudoers
       lineinfile:
         dest: /etc/sudoers
-        line: '%g_Server.{{ item }}-sudo@safdal.se        ALL=(ALL)       ALL'
+        line: '%g_Server.{{ item }}-sudo@domain.com        ALL=(ALL)       ALL'
         insertafter: '^%wheel'
       with_items: "{{ inventory_hostname_short }}"
       when: realmd_bound|failed
