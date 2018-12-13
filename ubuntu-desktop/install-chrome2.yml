@@ -1,1 +1,6 @@
-
+---
+- hosts: all
+  sudo: True
+  become: yes
+  roles:
+  - chrome
