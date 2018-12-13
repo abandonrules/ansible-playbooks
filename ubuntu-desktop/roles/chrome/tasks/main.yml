@@ -1,6 +1,8 @@
 # apt tasks file for ansible-role-chrome
 # via http://linuxg.net/how-to-install-google-chrome-42-stable-on-the-most-popular-linux-systems-via-the-official-google-repository/
 
+chrome_package: google-chrome-stable
+
 - name: "apt | ensure Google linux signing key present"
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
 
