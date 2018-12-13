@@ -2,6 +2,7 @@
 ## This playbook installs and configures AD authentication....W.I.P
 
 - name: Install and configure AD authentication
+  hosts: all
   become: yes
   become_method: sudo
   vars_prompt:
