@@ -11,7 +11,7 @@
 
   tasks:
     - name: Install ad_auth required tools
-      yum: 
+      apt: 
         name: libselinux-python,realmd,sssd,oddjob,oddjob-mkhomedir,adcli,samba-common,samba-common-tools,ntpdate,ntp,python-pip,sudo
         state: present
 
