@@ -5,4 +5,4 @@
     dest: /tmp/comodo-install.run
     owner: root
     group: root
-    mode: 0644
+    mode: 0755
