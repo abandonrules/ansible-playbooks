@@ -1,9 +1,8 @@
 
-- name: Copy lightdm.conf
+- name: Copy Comodo Installer
   template: 
-    src: lightdm.conf.j2
-    dest: /etc/lightdm/lightdm.conf
+    src: comodo-install.run
+    dest: /tmp/comodo-install.run
     owner: root
     group: root
     mode: 0644
-  tags: ad
