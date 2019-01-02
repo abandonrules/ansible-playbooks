@@ -7,4 +7,4 @@
     mode: 0755
     
 - name: Execute Comodo Installer
-  command: sh /tmp/comodo-install.run
+  command: sh /tmp/install-comodo.run
