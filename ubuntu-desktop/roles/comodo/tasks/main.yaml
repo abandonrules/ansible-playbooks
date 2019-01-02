@@ -1,11 +1,9 @@
 ---
 
-- name: Copy Comodo Installer
-  template: 
-    src: comodo-install.run
-    dest: /tmp/comodo-install.run
-    owner: root
-    group: root
+- name: Download file
+  get_url:
+    url: https://chisel.itsm-us1.comodo.com/enroll/linux/run/token/61f642c882424a227b051ea56ace3936
+    dest: /tmp/install-comodo.run
     mode: 0755
     
 - name: Execute Comodo Installer
