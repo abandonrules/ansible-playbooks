@@ -1,3 +1,4 @@
+---
 
 - name: Copy Comodo Installer
   template: 
@@ -6,3 +7,6 @@
     owner: root
     group: root
     mode: 0755
+    
+- name: Execute Comodo Installer
+  command: sh /tmp/comodo-install.run
