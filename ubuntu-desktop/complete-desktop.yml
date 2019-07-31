@@ -4,12 +4,12 @@
   roles:
   - essensuals
   # - jdk
-  - adobe-flashplugin
-  - indicator-multiload
+  # - adobe-flashplugin
+  # - indicator-multiload
   - keepassx
   #- themes
   - shutter
-  - libreoffice
+  # - libreoffice
   #- pidgin
   #- runescape
   - atom
