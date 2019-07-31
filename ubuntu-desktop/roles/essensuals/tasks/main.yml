@@ -23,5 +23,5 @@
   - bleachbit
   - youtube-dl
   - clipit
-  - nonotifs
-  - indicator-weather
+  # - nonotifs
+  # - indicator-weather
