@@ -3,7 +3,7 @@
   become: yes
   roles:
   - essensuals
-  - jdk
+  # - jdk
   - adobe-flashplugin
   - indicator-multiload
   - keepassx
@@ -15,4 +15,4 @@
   - atom
   #- openra
   - dropbox
-  - assaultcube
+  # - assaultcube
