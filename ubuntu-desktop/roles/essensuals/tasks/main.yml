@@ -1,6 +1,6 @@
 ---
-- name: Adding Do not disture repository
-  apt_repository: repo="ppa:vlijm/nonotifs"
+# - name: Adding Do not disture repository
+#   apt_repository: repo="ppa:vlijm/nonotifs"
 
 - name: Adding ubuntu-indicator-weather
   apt_repository: repo="ppa:kasra-mp/ubuntu-indicator-weather"
