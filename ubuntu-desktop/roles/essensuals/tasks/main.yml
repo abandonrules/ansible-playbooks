@@ -24,5 +24,16 @@
   - youtube-dl
   - clipit
   - openssh-server
+  - silversearcher-ag
+  - git
+  - silversearcher-ag
+  - curl
+  - htop
+  - xclip
+  - tmux
+  - make
+  - gcc
+  - g++
+
   # - nonotifs
   # - indicator-weather
