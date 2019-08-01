@@ -7,4 +7,6 @@ install:
 	complete-desktop.yml
 
 ssh:
-	sudo apt install openssh-server;systemctl enable ssh && systemctl start ssh
+	sudo apt install openssh-server 
+	sudo systemctl enable ssh 
+	sudo systemctl start ssh
