@@ -3,16 +3,16 @@
   become: yes
   roles:
   - essensuals
-  - jdk
-  - adobe-flashplugin
-  - indicator-multiload
+  # - jdk
+  # - adobe-flashplugin
+  # - indicator-multiload
   - keepassx
   #- themes
   - shutter
-  - libreoffice
+  # - libreoffice
   #- pidgin
   #- runescape
-  - atom
+  # - atom
   #- openra
   - dropbox
-  - assaultcube
+  # - assaultcube

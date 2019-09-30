@@ -1,9 +1,9 @@
 ---
-- name: Adding Do not disture repository
-  apt_repository: repo="ppa:vlijm/nonotifs"
+# - name: Adding Do not disture repository
+#   apt_repository: repo="ppa:vlijm/nonotifs"
 
-- name: Adding ubuntu-indicator-weather
-  apt_repository: repo="ppa:kasra-mp/ubuntu-indicator-weather"
+# - name: Adding ubuntu-indicator-weather
+#   apt_repository: repo="ppa:kasra-mp/ubuntu-indicator-weather"
 
 - name: Install essensuals packages
   apt: name={{item}} state=present
@@ -23,5 +23,17 @@
   - bleachbit
   - youtube-dl
   - clipit
-  - nonotifs
-  - indicator-weather
+  - openssh-server
+  - silversearcher-ag
+  - git
+  - silversearcher-ag
+  - curl
+  - htop
+  - xclip
+  - tmux
+  - make
+  - gcc
+  - g++
+
+  # - nonotifs
+  # - indicator-weather
