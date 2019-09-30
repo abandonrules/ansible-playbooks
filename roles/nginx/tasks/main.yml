@@ -24,17 +24,17 @@
   tags:
     - nginx-configuration
 
-- name: Copy default index, error_pages & ssl certificates
-  copy: src={{item.src}} dest={{item.dest}}
-  with_items:
-    - { src: '{{default_index}}', dest: '{{nginx_doc_root}}' }
-    - { src: '{{error_page_404}}', dest: '{{nginx_error_pages_dir}}' }
-    - { src: '{{error_page_50x}}', dest: '{{nginx_error_pages_dir}}' }
-    - { src: '{{error_page_403}}', dest: '{{nginx_error_pages_dir}}' }
-    - { src: '{{ssl_crt_file}}', dest: '{{nginx_ssl_dir}}/ssl_crt.pem' }
-    - { src: '{{ssl_key_file}}', dest: '{{nginx_ssl_dir}}/ssl_key.pem' }
-  tags:
-    - nginx-configuration
+#- name: Copy default index, error_pages & ssl certificates
+  #copy: src={{item.src}} dest={{item.dest}}
+  #with_items:
+    #- { src: '{{default_index}}', dest: '{{nginx_doc_root}}' }
+    #- { src: '{{error_page_404}}', dest: '{{nginx_error_pages_dir}}' }
+    #- { src: '{{error_page_50x}}', dest: '{{nginx_error_pages_dir}}' }
+    #- { src: '{{error_page_403}}', dest: '{{nginx_error_pages_dir}}' }
+    #- { src: '{{ssl_crt_file}}', dest: '{{nginx_ssl_dir}}/ssl_crt.pem' }
+    #- { src: '{{ssl_key_file}}', dest: '{{nginx_ssl_dir}}/ssl_key.pem' }
+  #tags:
+   # - nginx-configuration
 
 - name: Stop Nginx
   service: name=nginx state=stopped
